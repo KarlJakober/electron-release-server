@@ -86,15 +86,15 @@ module.exports = {
     // Maximum allowed file size in bytes
     // Defaults to 500MB
     // maxBytes: 524288000
-  }
+  },
   // if you have cloudfront dist. you can just add it as string url like : 'https://qwert.cloudfront.net'
-  aws : {
-    bucket : "your_aws_bucket",
-    ak : "your_aws_access_key",
-    sk : "your_aws_secret_key",
-    cloudfrontURL : null,
-    s3URL : 'https://s3.amazonaws.com/'
-    
+  aws: {
+    bucket: "your_aws_bucket",
+    ak: "your_aws_access_key",
+    sk: "your_aws_secret_key",
+    cloudfrontURL: null,
+    //You may need to set region
+    s3URL: "https://s3-us-west-2.amazonaws.com/"
   },
   /***************************************************************************
    * Your SSL certificate and key, if you want to be able to serve HTTP      *
