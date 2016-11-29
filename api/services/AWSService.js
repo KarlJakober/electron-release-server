@@ -8,7 +8,17 @@ var fs = require('fs');
 var zlib = require('zlib');
 
 var AWSService = {};
-AWS.config.update({ accessKeyId: sails.config.aws.ak, secretAccessKey: sails.config.aws.sk, region: sails.config.aws.region });
+let config = { region: sails.config.aws.region };
+
+if (sails.config.aws.ak) {
+    config.accessKeyId = sails.config.aws.ak;
+}
+
+if (sails.config.aws.sk) {
+    config.secretAccessKey = sails.config.aws.sk;
+}
+
+AWS.config.update(config);
 var s3 = new AWS.S3();
 
 AWSService.uploadFile = function (version, platform, file, callback) {
@@ -25,7 +35,7 @@ AWSService.uploadFile = function (version, platform, file, callback) {
         }
         else {
             var s3URL = sails.config.aws.s3URL;
-            fileURL = s3URL + '/' + bucket + '/' + key;
+            fileURL = s3URL + '/' + sails.config.aws.bucket + '/' + key;
         }
         callback(err, fileURL);
     });
